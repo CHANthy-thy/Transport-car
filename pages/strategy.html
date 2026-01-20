@@ -1156,11 +1156,15 @@
         // Check if user is admin before showing strategy page
         document.addEventListener('DOMContentLoaded', function () {
             // Simulated user check - in real app, this would check from auth system
-            const isAdmin = true; // Change to false to test access restriction
+            let isAdmin = true
+            if(localStorage.getItem('role') == "user"){
+                isAdmin = false;
+            }
+            // Change to false to test access restriction
 
             if (!isAdmin) {
                 alert('🚫 Access Denied! Admin privileges required to view this page.');
-                window.location.href = '../user/index.html';
+                window.location.href = '../index.html';
             }
 
             // Add interactive elements

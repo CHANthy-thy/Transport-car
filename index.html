@@ -9,11 +9,6 @@
 
 <body>
     <script>
-        document.getElementById('logout').addEventListener('click', function (e) {
-            e.preventDefault();
-            localStorage.removeItem('role');
-            window.location.href = "login.html";
-        })
         if (localStorage.getItem('role')) {
             window.location.href = "pages/home.html";
         }

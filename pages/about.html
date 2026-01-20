@@ -1028,7 +1028,6 @@
                 font-size: 0.95rem;
             }
         }
-        
     </style>
 </head>
 
@@ -1046,7 +1045,7 @@
             </a>
             <ul class="nav-menu">
                 <li><a href="./home.html">Home</a></li>
-                <li><a href="./strategy.html" >Strategy</a></li>
+                <li id="admin-side"><a href="./strategy.html">Strategy</a></li>
                 <li><a href="./about.html" class="active">About Us</a></li>
                 <li><a href="./product.html">Product</a></li>
                 <li><a href="./contact.html">Contact Us</a></li>
@@ -1077,12 +1076,12 @@
                         </label>
                     </div>
                 </div>
-                <button class="sign-in-btn" aria-label="Sign In">
+                <button id="logout" class="sign-in-btn" aria-label="Sign In">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <circle cx="11" cy="11" r="8" />
                         <path d="m21 21-4.35-4.35" />
                     </svg>
-                    <span class="sign-in-text">Sign In</span>
+                    <span class="sign-in-text">Log out</span>
                 </button>
                 <button class="menu-icon" aria-label="Menu">
                     <span></span>
@@ -1309,7 +1308,7 @@
             </div>
         </div>
     </footer>
-
+    <script src="./../js/app.js"></script>
 </body>
 
 </html>
