@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoLux - Rent the Best Luxury Cars</title>
+   
+</head>
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-red: #ff4d4d;
+  --dark-bg: #2a2a2a;
+  --text-dark: #1a1a1a;
+  --text-gray: #6c757d;
+  --light-pink: #fff5f5;
+  --white: #ffffff;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================= */
+/* HEADER - MODERN & PERFECT     */
+/* ============================= */
+
+header {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  padding: 0;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ============================= */
+/* LOGO                          */
+/* ============================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #ff4d4d 0%, #ff6b6b 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  transition: all 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+  box-shadow: 0 6px 20px rgba(255, 77, 77, 0.4);
+  transform: rotate(-5deg);
+}
+
+.logo-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: white;
+}
+
+.logo-text {
+  color: #111;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #111 0%, #333 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================= */
+/* NAVIGATION MENU               */
+/* ============================= */
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.3rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: block;
+}
+
+.nav-menu a::before {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff4d4d, #ff6b6b);
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.06);
+}
+
+.nav-menu a:hover::before,
+.nav-menu a.active::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ============================= */
+/* NAV ACTIONS                   */
+/* ============================= */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* ============================= */
+/* EXPANDABLE SEARCH (NO JS)     */
+/* ============================= */
+
+.search-container {
+  position: relative;
+}
+
+/* Hide the checkbox */
+.search-checkbox {
+  display: none;
+}
+
+/* Search Button */
+.search-btn {
+  background: white;
+  color: #ff4d4d;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  border: 2px solid #e5e5e5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  z-index: 2;
+  position: relative;
+}
+
+.search-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #ff4d4d;
+  fill: none;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 77, 77, 0.15);
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.05);
+}
+
+/* Hide button when search is active */
+.search-checkbox:checked ~ .search-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Header Search Bar (Expandable) - Inside .search-container */
+.search-container .search-bar {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 25px;
+  padding: 0 1.2rem;
+  gap: 0.8rem;
+  width: 46px;
+  height: 46px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e5e5e5;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* Expand search bar when checkbox is checked */
+.search-checkbox:checked ~ .search-bar {
+  width: 420px;
+  opacity: 1;
+  pointer-events: all;
+  border-color: #ff4d4d;
+  box-shadow: 0 4px 20px rgba(255, 77, 77, 0.12);
+}
+
+.search-container .search-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #ff4d4d;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+}
+
+.search-checkbox:checked ~ .search-bar .search-icon {
+  opacity: 1;
+}
+
+.search-container .search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  color: #333;
+  background: transparent;
+  font-family: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+  font-weight: 500;
+}
+
+.search-checkbox:checked ~ .search-bar .search-input {
+  opacity: 1;
+}
+
+.search-container .search-input::placeholder {
+  color: #999;
+}
+
+.search-container .search-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: #f5f5f5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  opacity: 0;
+}
+
+.search-checkbox:checked ~ .search-bar .search-close {
+  opacity: 1;
+}
+
+.search-container .search-close svg {
+  width: 14px;
+  height: 14px;
+  stroke: #666;
+  stroke-width: 2.5;
+}
+
+.search-container .search-close:hover {
+  background: #ff4d4d;
+}
+
+.search-container .search-close:hover svg {
+  stroke: white;
+}
+
+/* Sign In Button */
+.sign-in-btn {
+  background: linear-gradient(135deg, #ff4d4d 0%, #ff6b6b 100%);
+  color: white;
+  height: 46px;
+  padding: 0 1.5rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.sign-in-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.sign-in-btn:hover::before {
+  left: 100%;
+}
+
+.sign-in-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.sign-in-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 77, 77, 0.35);
+}
+
+.sign-in-btn:active {
+  transform: translateY(0);
+}
+
+/* Menu Icon (Mobile) */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 8px;
+}
+
+.menu-icon span {
+  width: 26px;
+  height: 3px;
+  background: #111;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.menu-icon:hover span {
+  background: #ff4d4d;
+}
+
+/* ============================= */
+/* RESPONSIVE HEADER             */
+/* ============================= */
+
+@media (max-width: 968px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-menu.active {
+    max-height: 400px;
+  }
+
+  .nav-menu li {
+    width: 100%;
+  }
+
+  .nav-menu a {
+    padding: 1rem 2rem;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .sign-in-text {
+    display: none;
+  }
+
+  .sign-in-btn {
+    width: 46px;
+    height: 46px;
+    padding: 0;
+  }
+
+  .menu-icon {
+    display: flex;
+  }
+
+  .search-checkbox:checked ~ .header-search-bar {
+    width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.8rem 1.5rem;
+  }
+
+  .logo-text {
+    font-size: 1.4rem;
+  }
+
+  .logo-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logo-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .search-checkbox:checked ~ .header-search-bar {
+    width: 240px;
+  }
+
+  .search-btn,
+  .sign-in-btn {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* ============================= */
+/* HERO SECTION                  */
+/* ============================= */
+
+.hero {
+  background: linear-gradient(135deg, var(--light-pink) 0%, #ffe8e8 100%);
+  padding: 4rem 2rem 6rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 650px;
+}
+
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-content {
+  z-index: 2;
+  padding-right: 2rem;
+}
+
+.welcome-text {
+  color: var(--primary-red);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.welcome-text::before {
+  content: '';
+  width: 40px;
+  height: 2px;
+  background: var(--primary-red);
+}
+
+.hero-content h1 {
+  font-size: 3.8rem;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.hero-content p {
+  color: var(--text-gray);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+  max-width: 550px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--primary-red);
+  color: white;
+  padding: 1.1rem 2.8rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 77, 77, 0.35);
+  background: #e63939;
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--primary-red);
+  padding: 1.1rem 2.8rem;
+  border: 2px solid var(--primary-red);
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  background: var(--primary-red);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Hero Image Styling */
+.hero-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  min-height: 400px;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  z-index: 2;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  box-shadow:
+    0 25px 70px rgba(255, 77, 77, 0.25),
+    0 15px 40px rgba(0, 0, 0, 0.15),
+    0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  object-fit: cover;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.hero-image img:hover {
+  transform: translateY(-12px) scale(1.03) rotateY(2deg);
+  box-shadow:
+    0 35px 90px rgba(255, 77, 77, 0.3),
+    0 20px 50px rgba(0, 0, 0, 0.2),
+    0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(135deg, rgba(255, 77, 77, 0.15), rgba(255, 119, 119, 0.1));
+  border-radius: 50%;
+  z-index: 1;
+  animation: float 7s ease-in-out infinite;
+}
+
+.hero-image::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -30px;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(255, 77, 77, 0.12), rgba(255, 179, 179, 0.08));
+  border-radius: 35% 65% 70% 30% / 35% 35% 65% 65%;
+  z-index: 1;
+  animation: float 9s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(8deg);
+  }
+}
+
+/* ============================= */
+/* CAR SEARCH SECTION            */
+/* ============================= */
+
+.search-section {
+  padding: 0 2rem;
+  background: linear-gradient(to bottom, #ffe8e8 0%, white 60%);
+}
+
+/* Car Search Bar - Inside .search-section */
+.search-section .search-bar {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  max-width: 1300px;
+  margin: -4rem auto 0;
+  position: relative;
+  z-index: 10;
+}
+
+.search-section .search-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-right: 2px solid #f0f0f0;
+  transition: all 0.3s;
+}
+
+.search-section .search-item:hover {
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.search-section .search-item:last-of-type {
+  border-right: none;
+}
+
+.search-section .search-icon {
+  font-size: 1.5rem;
+  min-width: 30px;
+}
+
+.search-section .search-content {
+  flex: 1;
+}
+
+.search-section .search-label {
+  color: var(--text-gray);
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.search-section .search-value {
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.search-section .search-btn {
+  background: var(--primary-red);
+  color: white;
+  padding: 1.2rem 3rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.2);
+  width: auto;
+  height: auto;
+  position: static;
+  transform: none;
+  opacity: 1;
+  pointer-events: all;
+  border: none;
+}
+
+.search-section .search-btn:hover {
+  background: #e63939;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 77, 77, 0.3);
+}
+
+/* ============================= */
+/* PREMIUM BRAND SECTION         */
+/* ============================= */
+
+.brands {
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.brands::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 77, 77, 0.08), transparent 70%);
+  border-radius: 50%;
+  top: -200px;
+  right: -200px;
+  animation: floatOrb 20s ease-in-out infinite;
+}
+
+.brands::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(77, 150, 255, 0.06), transparent 70%);
+  border-radius: 50%;
+  bottom: -150px;
+  left: -150px;
+  animation: floatOrb 15s ease-in-out infinite reverse;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+.brands-header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 4rem;
+}
+
+.brands-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #ff4d4d 0%, #ff6b6b 100%);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  animation: fadeInDown 0.8s ease;
+}
+
+.brands h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #111;
+  letter-spacing: -0.5px;
+  animation: fadeInUp 0.8s ease 0.2s backwards;
+}
+
+.brands-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 400;
+  margin: 0;
+  animation: fadeInUp 0.8s ease 0.4s backwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.brands-container {
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.brand-logo {
+  position: relative;
+  background: #fff;
+  border-radius: 22px;
+  padding: 30px 22px 26px;
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.08),
+    inset 0 0 0 1px rgba(255,255,255,0.8);
+  overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInScale 0.6s ease backwards;
+}
+
+.brand-logo:nth-child(1) { animation-delay: 0.1s; }
+.brand-logo:nth-child(2) { animation-delay: 0.2s; }
+.brand-logo:nth-child(3) { animation-delay: 0.3s; }
+.brand-logo:nth-child(4) { animation-delay: 0.4s; }
+.brand-logo:nth-child(5) { animation-delay: 0.5s; }
+.brand-logo:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.brand-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #ff4d4d, #ff6b6b);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+  z-index: 2;
+}
+
+.brand-badge.luxury {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.brand-logo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(255, 77, 77, 0.18),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.brand-logo::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.5),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.brand-logo:hover {
+  transform: translateY(-14px) scale(1.07);
+  box-shadow:
+    0 35px 75px rgba(255, 77, 77, 0.35),
+    0 10px 30px rgba(0,0,0,0.15);
+}
+
+.brand-logo:hover::before {
+  opacity: 1;
+}
+
+.brand-logo:hover::after {
+  left: 140%;
+}
+
+.brand-logo img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  transition: all 0.45s ease;
+  filter: brightness(1);
+}
+
+.brand-logo:hover img {
+  transform: scale(1.15) rotate(-1deg);
+  filter: brightness(1.1);
+}
+
+.brand-logo p {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111;
+  margin: 0;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+.brand-logo:hover p {
+  color: #ff4d4d;
+}
+
+/* ============================= */
+/* FOOTER                        */
+/* ============================= */
+
+.main-footer {
+  background: var(--dark-bg);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 4rem 0 2rem;
+  margin-top: 5rem;
+}
+
+.main-footer .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.main-footer .row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-logo {
+  color: var(--white);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.main-footer p {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.social-icons a:hover {
+  background: var(--primary-red);
+  transform: translateY(-3px);
+}
+
+.main-footer h5 {
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.main-footer h5::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--primary-red);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.footer-links a::before {
+  content: '→';
+  margin-right: 0.5rem;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+  padding-left: 0.5rem;
+}
+
+.footer-links a:hover::before {
+  opacity: 1;
+}
+
+.copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.copyright p {
+  margin-bottom: 0.5rem;
+}
+
+.text-muted {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.small {
+  font-size: 0.875rem;
+}
+
+/* ============================= */
+/* RESPONSIVE DESIGN - FULL      */
+/* ============================= */
+
+@media (max-width: 1200px) {
+  .brands-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .hero-content {
+    padding-right: 0;
+  }
+
+  .hero-image {
+    order: 2;
+  }
+
+  .hero-content {
+    order: 1;
+  }
+
+  .welcome-text {
+    justify-content: center;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .hero-content p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .search-section .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-section .search-item {
+    border-right: none;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .search-section .search-item:last-of-type {
+    border-bottom: none;
+  }
+
+  .search-section .search-btn {
+    width: 100%;
+  }
+
+  .main-footer .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1.5rem;
+  }
+
+  .hero {
+    padding: 3rem 1.5rem 4rem;
+    min-height: auto;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  .brands-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .brands h3 {
+    font-size: 1.8rem;
+  }
+  
+  .brands-subtitle {
+    font-size: 1rem;
+  }
+
+  .search-section .search-bar {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-footer .row {
+    grid-template-columns: 1fr;
+  }
+
+  .main-footer {
+    padding: 3rem 0 1.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brands-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .brands h3 {
+    font-size: 1.5rem;
+  }
+  
+  .brands-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .navbar {
+    padding: 0.8rem 1.5rem;
+  }
+
+  .logo-text {
+    font-size: 1.4rem;
+  }
+
+  .logo-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logo-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .search-btn,
+  .sign-in-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  .hero-buttons {
+    gap: 0.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .search-section .search-bar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-section .search-item {
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .search-section .search-btn {
+    width: 100%;
+  }
+}
+
+</style>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z" />
+                    </svg>
+                </div>
+                <span class="logo-text">AutoLux</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Product</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="checkbox" id="search-toggle" class="search-checkbox">
+                    <label for="search-toggle" class="search-btn" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                    </label>
+                    <div class="search-bar">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                        <input type="text" placeholder="Search cars or type a keyword..." class="search-input">
+                        <label for="search-toggle" class="search-close" aria-label="Close search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+                <button class="sign-in-btn" aria-label="Sign In">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <span class="sign-in-text">Sign In</span>
+                </button>
+                <button class="menu-icon" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="welcome-text">Welcome To AutoLux</div>
+                <h1>Rent the Best Luxury Cars with Ease</h1>
+                <p>Choose from our premium fleet of luxury and self-drive cars. Enjoy top performance, comfort, and
+                    style for any trip. Your dream ride is just a booking away!</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">Book Your Car Now</button>
+                    <button class="btn-secondary">Self-Drive Car</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?w=1200&q=90"
+                        alt="Luxury Sports Car">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="search-section">
+        <div class="search-bar">
+            <div class="search-item">
+                <div class="search-icon">📍</div>
+                <div class="search-content">
+                    <span class="search-label">Choose Your Location</span>
+                    <div class="search-value">Siem Reap</div>
+                </div>
+            </div>
+
+            <div class="search-item">
+                <div class="search-icon">📅</div>
+                <div class="search-content">
+                    <span class="search-label">Pick-Up Date</span>
+                    <div class="search-value">20 Jan 2026</div>
+                </div>
+            </div>
+
+            <div class="search-item">
+                <div class="search-icon">📅</div>
+                <div class="search-content">
+                    <span class="search-label">Return Date</span>
+                    <div class="search-value">20 Jan 2027</div>
+                </div>
+            </div>
+
+            <button class="search-btn">Search Car Now</button>
+        </div>
+    </div>
+
+    <!-- Brand Logos -->
+    <section class="brands">
+        <div class="brands-header">
+            <span class="brands-badge">Premium Collection</span>
+            <h3>Here are the branches of my Product</h3>
+            <p class="brands-subtitle">Explore our exclusive automotive partnerships</p>
+        </div>
+        <div class="brands-container">
+            <div class="brand-logo">
+                <div class="brand-badge">Popular</div>
+                <img src="https://i.pinimg.com/736x/34/2c/3c/342c3c8ff6f3f5c52126988ffc9d9a40.jpg">
+                <p>Toyota</p>
+            </div>
+            <div class="brand-logo">
+                <div class="brand-badge">New</div>
+                <img src="https://i.pinimg.com/736x/f7/81/fb/f781fbc4e4c1b64f0afb0ec8b0bd48d9.jpg">
+                <p>Honda</p>
+            </div>
+            <div class="brand-logo">
+                <img src="https://i.pinimg.com/736x/65/90/3c/65903c25a96702fb26a0b8acba5b1604.jpg">
+                <p>BMW</p>
+            </div>
+            <div class="brand-logo">
+                <div class="brand-badge luxury">Luxury</div>
+                <img src="https://i.pinimg.com/736x/12/72/13/12721354ef8141db601367d267a8d286.jpg">
+                <p>Mercedes</p>
+            </div>
+            <div class="brand-logo">
+                <img src="https://i.pinimg.com/736x/51/ec/4b/51ec4b79b0e42e22ff4760de01ae176f.jpg">
+                <p>Ford</p>
+            </div>
+            <div class="brand-logo">
+                <img src="https://i.pinimg.com/1200x/bd/76/a7/bd76a79abfb05dc47f0d00143a3cab6c.jpg">
+                <p>Audi</p>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <div class="footer-logo">AutoLux</div>
+                    <p>Premium car rental service providing the best quality luxury vehicles. Experience excellence and
+                        reliability in every journey with us.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶</a>
+                        <a href="#" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#about">About Us</a>
+                        <a href="#cars">Available Cars</a>
+                        <a href="#gallery">Gallery</a>
+                        <a href="#testimonials">Testimonials</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Our Services</h5>
+                    <div class="footer-links">
+                        <a href="#">Car Rental</a>
+                        <a href="#">Self Drive</a>
+                        <a href="#">Luxury Cars</a>
+                        <a href="#">Corporate Plans</a>
+                        <a href="#">Airport Transfer</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Contact Info</h5>
+                    <p>📧 info@autolux.com</p>
+                    <p>📞 +855 12 345 678</p>
+                    <p>📍 Phnom Penh, Cambodia</p>
+                    <p style="margin-top: 1rem;">Monday - Sunday<br>9:00 AM - 9:00 PM</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>Edit&^>^WebC2026 Created by PNC Students</p>
+                <p class="text-muted small">Website designed for premium car rental experience</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    // Menu toggle
+    const menuBtn = document.querySelector('.menu-icon');
+    const navMenu = document.querySelector('.nav-menu');
+
+    menuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        menuBtn.classList.toggle('open');
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuBtn.classList.remove('open');
+        });
+    });
+
+    // Search toggle
+    const searchToggle = document.getElementById('search-toggle');
+    const searchBar = document.querySelector('.search-container .search-bar');
+
+    searchToggle.addEventListener('change', () => {
+        searchBar.classList.toggle('active', searchToggle.checked);
+    });
+
+    // Close search when clicking outside
+    document.addEventListener('click', e => {
+        if (!searchBar.contains(e.target) && !menuBtn.contains(e.target) && !e.target.closest('.search-btn')) {
+            searchToggle.checked = false;
+            searchBar.classList.remove('active');
+        }
+    });
+});
+
+    </script>
+</body>
+
+</html>
