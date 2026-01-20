@@ -1,0 +1,3002 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoDrive | Premium Car Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #ff4d4d;
+            --dark-bg: #2a2a2a;
+            --text-dark: #1a1a1a;
+            --text-gray: #6c757d;
+            --light-pink: #fff5f5;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        :root {
+            --primary-red: #ff4d4d;
+            --dark-bg: #2a2a2a;
+            --text-dark: #1a1a1a;
+            --text-gray: #6c757d;
+            --light-pink: #fff5f5;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        } */
+
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--dark-bg);
+            padding: 10px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-btn {
+            margin-top: 10px;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1001;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .admin-form {
+            width: 300px;
+            padding: 20px;
+        }
+
+        .admin-form input,
+        .admin-form select,
+        .admin-form textarea {
+            width: 100%;
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            border: 1px solid var(--text-gray);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .admin-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+
+        .good   {
+          
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* ============================= */
+        /* LOGO                          */
+        /* ============================= */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff4d4d 0%, #ff6b6b 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            box-shadow: 0 6px 20px rgba(255, 77, 77, 0.4);
+            transform: rotate(-5deg);
+        }
+
+        .logo-icon svg {
+            width: 26px;
+            height: 26px;
+            fill: white;
+        }
+
+        .logo-text {
+            color: #111;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #111 0%, #333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ============================= */
+        /* NAVIGATION MENU               */
+        /* ============================= */
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.7rem 1.3rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: block;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, #ff4d4d, #ff6b6b);
+            border-radius: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #ff4d4d;
+            background: rgba(255, 77, 77, 0.06);
+        }
+
+        .nav-menu a:hover::before,
+        .nav-menu a.active::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* ============================= */
+        /* NAV ACTIONS                   */
+        /* ============================= */
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        /* ============================= */
+        /* EXPANDABLE SEARCH (NO JS)     */
+        /* ============================= */
+
+        .search-container {
+            position: relative;
+        }
+
+        /* Hide the checkbox */
+        .search-checkbox {
+            display: none;
+        }
+
+        /* Search Button */
+        .search-btn {
+            background: white;
+            color: #ff4d4d;
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            border: 2px solid #e5e5e5;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            z-index: 2;
+            position: relative;
+        }
+
+        .search-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: #ff4d4d;
+            fill: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 77, 77, 0.15);
+            border-color: #ff4d4d;
+            background: rgba(255, 77, 77, 0.05);
+        }
+
+        /* Hide button when search is active */
+        .search-checkbox:checked~.search-btn {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Header Search Bar (Expandable) - Inside .search-container */
+        .search-container .search-bar {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 25px;
+            padding: 0 1.2rem;
+            gap: 0.8rem;
+            width: 46px;
+            height: 46px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e5e5e5;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        /* Expand search bar when checkbox is checked */
+        .search-checkbox:checked~.search-bar {
+            width: 420px;
+            opacity: 1;
+            pointer-events: all;
+            border-color: #ff4d4d;
+            box-shadow: 0 4px 20px rgba(255, 77, 77, 0.12);
+        }
+
+        .search-container .search-icon {
+            width: 20px;
+            height: 20px;
+            stroke: #ff4d4d;
+            flex-shrink: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.2s;
+        }
+
+        .search-checkbox:checked~.search-bar .search-icon {
+            opacity: 1;
+        }
+
+        .search-container .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 0.95rem;
+            color: #333;
+            background: transparent;
+            font-family: inherit;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.2s;
+            font-weight: 500;
+        }
+
+        .search-checkbox:checked~.search-bar .search-input {
+            opacity: 1;
+        }
+
+        .search-container .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-container .search-close {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: #f5f5f5;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            opacity: 0;
+        }
+
+        .search-checkbox:checked~.search-bar .search-close {
+            opacity: 1;
+        }
+
+        .search-container .search-close svg {
+            width: 14px;
+            height: 14px;
+            stroke: #666;
+            stroke-width: 2.5;
+        }
+
+        .search-container .search-close:hover {
+            background: #ff4d4d;
+        }
+
+        .search-container .search-close:hover svg {
+            stroke: white;
+        }
+
+        /* Sign In Button */
+        .sign-in-btn {
+            background: linear-gradient(135deg, #ff4d4d 0%, #ff6b6b 100%);
+            color: white;
+            height: 46px;
+            padding: 0 1.5rem;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sign-in-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .sign-in-btn:hover::before {
+            left: 100%;
+        }
+
+        .sign-in-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .sign-in-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 77, 77, 0.35);
+        }
+
+        .sign-in-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Menu Icon (Mobile) */
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 8px;
+        }
+
+        .menu-icon span {
+            width: 26px;
+            height: 3px;
+            background: #111;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon:hover span {
+            background: #ff4d4d;
+        }
+
+        /* ============================= */
+        /* RESPONSIVE HEADER             */
+        /* ============================= */
+
+        @media (max-width: 968px) {
+            .navbar {
+                padding: 1rem 2rem;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-menu.active {
+                max-height: 400px;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .nav-menu a {
+                padding: 1rem 2rem;
+                width: 100%;
+                border-radius: 0;
+            }
+
+            .sign-in-text {
+                display: none;
+            }
+
+            .sign-in-btn {
+                width: 46px;
+                height: 46px;
+                padding: 0;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+
+            .search-checkbox:checked~.header-search-bar {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 0.8rem 1.5rem;
+            }
+
+            .logo-text {
+                font-size: 1.4rem;
+            }
+
+            .logo-icon {
+                width: 44px;
+                height: 44px;
+            }
+
+            .logo-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .search-checkbox:checked~.header-search-bar {
+                width: 240px;
+            }
+
+            .search-btn,
+            .sign-in-btn {
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, var(--light-pink) 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+
+        }
+
+        .hero img {
+            width: 800px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero h1 span {
+            color: var(--primary-red);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-top: 4px;
+        }
+
+        /* Cars Section */
+        .cars-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            background: var(--light-gray);
+            border: none;
+            border-radius: 30px;
+            color: var(--text-gray);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .car-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .car-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .car-card:hover .car-image img {
+            transform: scale(1.05);
+        }
+
+        .car-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--primary-red);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .car-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .car-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .car-specs {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            min-height: 40px;
+        }
+
+        .car-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary-red);
+            color: white;
+            flex: 2;
+        }
+
+        .btn-primary:hover {
+            background: #ff3333;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-dark);
+            border: 1px solid var(--text-gray);
+            flex: 1;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+
+        /* Cart Modal Styles */
+        .cart-modal {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-items {
+            margin-bottom: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            gap: 20px;
+            transition: var(--transition);
+        }
+
+        .cart-item:hover {
+            border-color: var(--primary-red);
+            box-shadow: 0 4px 12px rgba(255, 77, 77, 0.1);
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .cart-item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .cart-item-specs {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .cart-item-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .cart-item-remove:hover {
+            color: var(--primary-red);
+            background-color: var(--light-pink);
+        }
+
+        .cart-summary {
+            background: var(--light-pink);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        .summary-row.total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid var(--light-gray);
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .cart-actions .btn {
+            flex: 1;
+            padding: 14px 24px;
+            font-size: 1rem;
+        }
+
+        /* Empty Cart Styles */
+        .empty-cart {
+            max-width: 500px;
+        }
+
+        .empty-cart-content {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .empty-cart-icon {
+            font-size: 4rem;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+
+        .empty-cart-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .empty-cart-content p {
+            color: var(--text-gray);
+            margin-bottom: 24px;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .checkout-modal {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            color: var(--text-dark);
+            font-size: 1.6rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-red);
+            background-color: var(--light-gray);
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        /* Checkout Steps */
+        .checkout-steps {
+            display: flex;
+            margin-bottom: 40px;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .checkout-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--light-gray);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .step.active .step-icon {
+            background: var(--primary-red);
+            box-shadow: 0 0 0 8px rgba(255, 77, 77, 0.1);
+        }
+
+        .step.completed .step-icon {
+            background: #10B981;
+        }
+
+        .step.completed .step-icon::after {
+            content: '✓';
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .step.active .step-label {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        /* Checkout Forms */
+        .checkout-form {
+            display: none;
+        }
+
+        .checkout-form.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .form-title {
+            font-size: 1.4rem;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 16px 14px 44px;
+            border: 1px solid #9f8383;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 600px;
+            /* margin-top: 32px; */
+            border-top: 1px solid var(--light-gray);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .payment-method {
+            padding: 20px;
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .payment-method:hover {
+            border-color: #00D4AA;
+            transform: translateY(-2px);
+        }
+
+        .payment-method.active {
+            border-color: var(--primary-red);
+            background-color: rgba(255, 77, 77, 0.02);
+            box-shadow: 0 4px 16px rgba(255, 77, 77, 0.08);
+        }
+
+        .payment-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            color: var(--text-gray);
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .payment-method.active .payment-icon {
+            color: var(--primary-red);
+        }
+
+        .payment-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .payment-description {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+
+        /* QR Code Section */
+        .qr-section {
+            text-align: center;
+            padding: 32px;
+            background: var(--light-pink);
+            border-radius: var(--border-radius);
+            margin-top: 24px;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            background: white;
+            margin: 0 auto 20px;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .qr-placeholder {
+            width: 160px;
+            height: 160px;
+            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .qr-placeholder::before {
+            content: 'Scan QR Code';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            background-color: var(--light-pink);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-top: 32px;
+            border: 1px solid var(--light-gray);
+        }
+
+        .summary-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid var(--light-gray);
+        }
+
+        /* Success Message */
+        .success-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #10B981;
+            margin-bottom: 20px;
+        }
+
+        .success-message h2 {
+            color: #10B981;
+            margin-bottom: 12px;
+        }
+
+        .success-message p {
+            color: var(--text-gray);
+            margin-bottom: 8px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================= */
+        /* FOOTER                        */
+        /* ============================= */
+
+        .main-footer {
+            background: var(--dark-bg);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+        }
+
+        .main-footer .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .main-footer .row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .main-footer p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-red);
+            transform: translateY(-3px);
+        }
+
+        .main-footer h5 {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .main-footer h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-red);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a::before {
+            content: '→';
+            margin-right: 0.5rem;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 0.5rem;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .copyright p {
+            margin-bottom: 0.5rem;
+        }
+
+        .text-muted {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .small {
+            font-size: 0.875rem;
+        }
+
+        /* ============================= */
+        /* RESPONSIVE DESIGN             */
+        /* ============================= */
+
+        @media (max-width: 1200px) {
+            .brands-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-content {
+                padding-right: 0;
+            }
+
+            .hero-image {
+                order: 2;
+            }
+
+            .hero-content {
+                order: 1;
+            }
+
+            .welcome-text {
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .search-section .search-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-section .search-item {
+                border-right: none;
+                border-bottom: 2px solid #f0f0f0;
+            }
+
+            .search-section .search-item:last-of-type {
+                border-bottom: none;
+            }
+
+            .search-section .search-btn {
+                width: 100%;
+            }
+
+            .main-footer .row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem 4rem;
+                min-height: auto;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+
+            .brands-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .brands h3 {
+                font-size: 1.8rem;
+            }
+
+            .brands-subtitle {
+                font-size: 1rem;
+            }
+
+            .car-search-bar {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .main-footer .row {
+                grid-template-columns: 1fr;
+            }
+
+            .main-footer {
+                padding: 3rem 0 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brands-container {
+                grid-template-columns: 1fr;
+            }
+
+            .brands h3 {
+                font-size: 1.5rem;
+            }
+
+            .brands-subtitle {
+                font-size: 0.95rem;
+            }
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: end;
+            gap: 16px;
+        }
+
+        .cart-btn {
+            position: relative;
+            background: none;
+            border: none;
+            color: var(black);
+            font-size: 2.7rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            /* transition: var(--transition); */
+        }
+
+        .cart-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--primary-red);
+            color: rgb(248, 245, 245);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+         /* Header */
+       
+
+
+      
+       
+    </style>
+</head>
+
+<body>
+    <!-- Admin Button -->
+    <button class="admin-btn" id="adminToggle">
+        <i class="fas fa-cog"></i> Admin
+    </button>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-form">
+            <h3 style="color: white; margin-bottom: 20px;">Add New Car</h3>
+            <input type="text" id="adminCarName" placeholder="Car Name (e.g., Tesla Model S 2023)">
+            <input type="number" id="adminCarPrice" placeholder="Price (e.g., 79900)">
+            <textarea id="adminCarSpecs" placeholder="Specifications (e.g., Electric, 670 HP, 0-60 in 2.3s)"></textarea>
+            <input type="text" id="adminCarImage" placeholder="Image URL (https://...)"
+                value="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+            <select id="adminCarBrand">
+                <option value="">Select Brand</option>
+                <option value="toyota">Toyota</option>
+                <option value="honda">Honda</option>
+                <option value="ford">Ford</option>
+                <option value="bmw">BMW</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="tesla">Tesla</option>
+                <option value="audi">Audi</option>
+                <option value="porsche">Porsche</option>
+                <option value="lexus">Lexus</option>
+                <option value="chevrolet">Chevrolet</option>
+            </select>
+            <select id="adminCarCategory">
+                <option value="">Select Category</option>
+                <option value="sedan">Sedan</option>
+                <option value="suv">SUV</option>
+                <option value="sports">Sports</option>
+                <option value="luxury">Luxury</option>
+                <option value="electric">Electric</option>
+                <option value="truck">Truck</option>
+                <option value="hybrid">Hybrid</option>
+            </select>
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                <button class="btn btn-primary" onclick="addNewCar()" style="flex: 2;">
+                    <i class="fas fa-plus"></i> Add Car
+                </button>
+                <button class="btn btn-outline" onclick="toggleAdminPanel()"
+                    style="flex: 1; color: white; border-color: white;">
+                    Close
+                </button>
+            </div>
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="color: #a0a0a0; font-size: 0.8rem; margin-bottom: 10px;">Tip: Use Unsplash for free car
+                    images:</p>
+                <p style="color: #a0a0a0; font-size: 0.75rem;">https://images.unsplash.com/photo-1553440569-bcc63803a83d
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Header -->
+    <header class="good">
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z" />
+                    </svg>
+                </div>
+                <span class="logo-text">AutoLux</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="./home.html">Home</a></li>
+                <li><a href="./strategy.html">Strategy</a></li>
+                <li><a href="./about.html">About Us</a></li>
+                <li><a href="./product.html" class="active">Product</a></li>
+                <li><a href="./contact.html">Contact Us</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="checkbox" id="search-toggle" class="search-checkbox">
+                    <label for="search-toggle" class="search-btn" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                    </label>
+                    <div class="search-bar">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                        <input type="text" placeholder="Search cars or type a keyword..." class="search-input">
+                        <label for="search-toggle" class="search-close" aria-label="Close search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="sign-in-btn" aria-label="Sign In">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <span class="sign-in-text">Sign In</span>
+                </button>
+                <button class="menu-icon" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Drive Your <span>Dream</span> Car Today</h1>
+                <p>Discover premium vehicles with transparent pricing and exceptional service. Your perfect car is just
+                    a click away.</p>
+                <div class="hero-buttons">
+                    <a href="#cars" class="btn btn-primary" style="padding: 14px 32px;">
+                        <i class="fas fa-car"></i> Browse Cars
+                    </a>
+                    <a href="#" class="btn btn-outline" style="padding: 14px 32px;">
+                        <i class="fas fa-dollar-sign"></i> Sell Your Car
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-value">2,500+</span>
+                        <span class="stat-label">Cars Sold</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">4.9★</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">24h</span>
+                        <span class="stat-label">Delivery</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="../images/download (20).png" alt="">
+    </section>
+
+    <!-- Cars Section -->
+    <section class="cars-section" id="cars">
+        <div class="container">
+            <h2 class="section-title">Premium Collection</h2>
+            <p class="section-subtitle">Explore our curated selection of premium vehicles from top brands</p>
+
+            <div class="filter-tabs">
+                <button class="filter-btn active" onclick="filterCars('all')">All Cars</button>
+                <button class="filter-btn" onclick="filterCars('sedan')">Sedan</button>
+                <button class="filter-btn" onclick="filterCars('suv')">SUV</button>
+                <button class="filter-btn" onclick="filterCars('sports')">Sports</button>
+                <button class="filter-btn" onclick="filterCars('luxury')">Luxury</button>
+                <button class="filter-btn" onclick="filterCars('electric')">Electric</button>
+            </div>
+            <header>
+                <div class="container header-content">
+                    <a href="#" class="logo" style="display: none;">
+                        <div class="logo-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        AutoDrive
+                    </a>
+
+                    <button class="mobile-menu-btn" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <nav style="display: none;">
+                        <a href="#" class="nav-link active">Home</a>
+                        <a href="#cars" class="nav-link">Browse</a>
+                        <a href="#" class="nav-link">Sell</a>
+                        <a href="#" class="nav-link">Financing</a>
+                        <a href="#" class="nav-link">About</a>
+                    </nav>
+
+                    <div class="header-actions">
+                        <button class="cart-btn" onclick="showCart()">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="cart-count">0</span>
+                        </button>
+                        
+                    </div>
+                </div>
+            </header>
+            <div class="cars-grid" id="carsGrid">
+                <!-- Cars will be loaded here -->
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn btn-primary" onclick="loadMoreCars()" id="loadMoreBtn">
+                    <i class="fas fa-plus"></i> Load More Cars
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="checkout-modal">
+            <div class="modal-header">
+                <h2>Complete Your Purchase</h2>
+                <button class="close-modal" id="closeCheckout">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Checkout Steps -->
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-icon">1</div>
+                        <span class="step-label">Details</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-icon">2</div>
+                        <span class="step-label">Payment</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-icon">3</div>
+                        <span class="step-label">Confirm</span>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-icon">4</div>
+                        <span class="step-label">Complete</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Personal Details -->
+                <div class="checkout-form active" id="step1">
+                    <h3 class="form-title">Personal Information</h3>
+                    <form id="personalForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input type="text" id="firstName" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input type="text" id="lastName" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope input-icon"></i>
+                                    <input type="email" id="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-phone input-icon"></i>
+                                    <input type="tel" id="phone" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Delivery Address</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-map-marker-alt input-icon"></i>
+                                <input type="text" id="address" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">ZIP Code</label>
+                                <input type="text" id="zip" required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" id="cancelCheckout">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                            <button type="button" class="btn btn-primary" id="nextToPayment">
+                                Continue
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 2: Payment -->
+                <div class="checkout-form" id="step2">
+                    <h3 class="form-title">Select Payment Method</h3>
+
+                    <div class="payment-methods">
+                        <div class="payment-method active" data-method="credit">
+                            <div class="payment-icon">
+                                <i class="far fa-credit-card"></i>
+                            </div>
+                            <div class="payment-label">Credit Card</div>
+                            <div class="payment-description">Pay with your credit or debit card</div>
+                        </div>
+
+                        <div class="payment-method" data-method="qr">
+                            <div class="payment-icon">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <div class="payment-label">QR Code</div>
+                            <div class="payment-description">Scan QR code with mobile banking app</div>
+                        </div>
+
+                        <div class="payment-method" data-method="mobile">
+                            <div class="payment-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="payment-label">Mobile Payment</div>
+                            <div class="payment-description">PayPal, Apple Pay, Google Pay</div>
+                        </div>
+
+                        <div class="payment-method" data-method="bank">
+                            <div class="payment-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="payment-label">Bank Transfer</div>
+                            <div class="payment-description">Direct bank transfer</div>
+                        </div>
+                    </div>
+
+                    <!-- Credit Card Form -->
+                    <form id="paymentForm" style="display: block;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <div class="input-wrapper">
+                                    <i class="far fa-credit-card input-icon"></i>
+                                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardName">Name on Card</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input type="text" id="cardName" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry">Expiry Date</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar input-icon"></i>
+                                    <input type="text" id="expiry" placeholder="MM/YY" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-lock input-icon"></i>
+                                    <input type="text" id="cvv" placeholder="123" required>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- QR Code Section -->
+                    <div id="qrPaymentSection" class="qr-section" style="display: none;">
+                        <h4 style="margin-bottom: 16px; color: var(--text-dark);">Scan QR Code to Pay</h4>
+                        <div class="qr-code">
+                           <img src="./car.png" alt="">
+                        </div>
+                        <p style="color: var(--text-gray); font-size: 0.95rem; margin-bottom: 16px;">
+                            Open your mobile banking app and scan this QR code to complete payment
+                        </p>
+                        <button class="btn btn-primary" id="confirmQrPayment">
+                            <i class="fas fa-check"></i>
+                            I've Completed Payment
+                        </button>
+                    </div>
+
+                    <!-- Mobile Payment Section -->
+                    <div id="mobilePaymentSection" class="qr-section" style="display: none;">
+                        <h4 style="margin-bottom: 16px; color: var(--text-dark);">Mobile Payment</h4>
+                        <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 24px;">
+                            <button class="btn btn-outline" style="padding: 12px 24px;">
+                                <i class="fab fa-paypal"></i>
+                                PayPal
+                            </button>
+                            <button class="btn btn-outline" style="padding: 12px 24px;">
+                                <i class="fab fa-apple"></i>
+                                Apple Pay
+                            </button>
+                            <button class="btn btn-outline" style="padding: 12px 24px;">
+                                <i class="fab fa-google"></i>
+                                Google Pay
+                            </button>
+                        </div>
+                        <p style="color: var(--text-gray); font-size: 0.95rem;">
+                            Select your preferred mobile payment method above
+                        </p>
+                    </div>
+
+                    <div class="order-summary">
+                        <h4 class="summary-title">Order Summary</h4>
+                        <div class="summary-item">
+                            <span>Vehicle:</span>
+                            <span id="summaryCar">Toyota Camry 2023</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Base Price:</span>
+                            <span id="summaryPrice">$40,000</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Tax (8%):</span>
+                            <span id="summaryTax">$3,200</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Delivery Fee:</span>
+                            <span>$500</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>Total Amount:</span>
+                            <span id="summaryTotal">$43,700</span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="backToDetails">
+                            <i class="fas fa-arrow-left"></i>
+                            Back
+                        </button>
+                        <button type="button" class="btn btn-primary" id="nextToConfirm">
+                            Continue
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Confirmation -->
+                <div class="checkout-form" id="step3">
+                    <h3 class="form-title">Confirm Your Order</h3>
+
+                    <div class="order-summary">
+                        <h4 class="summary-title">Order Details</h4>
+                        <div class="summary-item">
+                            <span>Vehicle:</span>
+                            <span id="confirmCar">Toyota Camry 2023</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Color:</span>
+                            <span id="confirmColor">Pearl White</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Price:</span>
+                            <span id="confirmPrice">$40,000</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Customer:</span>
+                            <span id="confirmName">John Doe</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Email:</span>
+                            <span id="confirmEmail">john@example.com</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Delivery Address:</span>
+                            <span id="confirmAddress">123 Main St, City, State 12345</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Payment Method:</span>
+                            <span id="confirmPayment">Credit Card</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>Total Amount:</span>
+                            <span id="confirmTotal">$43,700</span>
+                        </div>
+                    </div>
+
+                    <div
+                        style="background: #F0F9FF; padding: 16px; border-radius: 8px; margin-top: 24px; border-left: 4px solid #00D4AA;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <i class="fas fa-info-circle" style="color: #00D4AA;"></i>
+                            <span style="font-weight: 600; color: var(--text-dark);">Estimated Delivery:</span>
+                            <span style="color: var(--primary-red); font-weight: 600;">3-5 Business Days</span>
+                        </div>
+                        <p style="color: var(--text-gray); font-size: 0.9rem; margin-left: 28px;">
+                            Your vehicle will be delivered to your specified address. You'll receive tracking
+                            information via email.
+                        </p>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="backToPayment">
+                            <i class="fas fa-arrow-left"></i>
+                            Back
+                        </button>
+                        <button type="button" class="btn btn-primary" id="completePurchase">
+                            <i class="fas fa-check"></i>
+                            Confirm Purchase
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Completion -->
+                <div class="checkout-form" id="step4">
+                    <div class="success-message">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>Purchase Successful!</h2>
+                        <p>Thank you for your order. Your transaction has been completed successfully.</p>
+                        <p>A confirmation email with your order details has been sent to your email address.</p>
+                        <p style="margin-top: 20px;">
+                            <strong>Order ID:</strong>
+                            <span style="color: var(--primary-red);">#AUTO-2023-5874</span>
+                        </p>
+
+                        <div style="margin-top: 30px;">
+                            <button class="btn btn-primary" id="closeSuccess">
+                                <i class="fas fa-home"></i>
+                                Return to Home
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <div class="footer-logo">AutoLux</div>
+                    <p>Premium car rental service providing the best quality luxury vehicles. Experience excellence and
+                        reliability in every journey with us.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                        <a href="#" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links">
+                         <a href="./home.html">Home</a>
+                        <a href="./strategy.html">Strategy</a>
+                        <a href="./about.html">About Us</a>
+                        <a href="./product.html">Product</a>
+                        <a href="./contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Our Services</h5>
+                    <div class="footer-links">
+                        <a href="#">Car Rental</a>
+                        <a href="#">Self Drive</a>
+                        <a href="#">Luxury Cars</a>
+                        <a href="#">Corporate Plans</a>
+                        <a href="#">Airport Transfer</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Contact Info</h5>
+                    <p>📧 info@autolux.com</p>
+                    <p>📞 +855 12 345 678</p>
+                    <p>📍 Phnom Penh, Cambodia</p>
+                    <p style="margin-top: 1rem;">Monday - Sunday<br>9:00 AM - 9:00 PM</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 Created by PNC Students</p>
+                <p class="text-muted small">Website designed for premium car rental experience</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Car Database with 30+ products
+        const carsDatabase = [
+            // Toyota Cars (10 models)
+            { id: 1, name: "Toyota Camry 2023", price: 28900, specs: "2.5L 4-cylinder, 203 HP, 8-speed auto", brand: "toyota", category: "sedan", image: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 2, name: "Toyota RAV4 2023", price: 31900, specs: "2.5L 4-cylinder, 203 HP, AWD", brand: "toyota", category: "suv", image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 3, name: "Toyota Corolla 2023", price: 22900, specs: "1.8L 4-cylinder, 139 HP, CVT", brand: "toyota", category: "sedan", image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 4, name: "Toyota Highlander 2023", price: 42900, specs: "3.5L V6, 295 HP, 8-passenger", brand: "toyota", category: "suv", image: "https://images.unsplash.com/photo-1563720223484-21c6c2d3c6c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 5, name: "Toyota Tacoma 2023", price: 34900, specs: "3.5L V6, 278 HP, 4WD", brand: "toyota", category: "suv", image: "https://images.unsplash.com/photo-1593941707882-a5bba5338fe2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 6, name: "Toyota 4Runner 2023", price: 42900, specs: "4.0L V6, 270 HP, Off-road", brand: "toyota", category: "suv", image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 7, name: "Toyota Prius 2023", price: 27900, specs: "Hybrid, 1.8L, 121 HP, 52 MPG", brand: "toyota", category: "sedan", image: "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 8, name: "Toyota Sienna 2023", price: 39900, specs: "Hybrid, 2.5L, 245 HP, 7-passenger", brand: "toyota", category: "suv", image: "https://images.unsplash.com/photo-1563720223484-21c6c2d3c6c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 9, name: "Toyota GR86 2023", price: 32900, specs: "2.4L 4-cylinder, 228 HP, Sports", brand: "toyota", category: "sports", image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 10, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 11, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 12, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 13, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 14, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 15, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 16, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 17, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 18, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 19, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 20, name: "Toyota Crown 2023", price: 45900, specs: "2.4L Turbo Hybrid, 340 HP, Luxury", brand: "toyota", category: "luxury", image: "https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            // Honda Cars (5 models)
+            { id: 21, name: "Honda Civic 2023", price: 25900, specs: "2.0L 4-cylinder, 158 HP, CVT", brand: "honda", category: "sedan", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 22, name: "Honda CR-V 2023", price: 32900, specs: "1.5L Turbo, 190 HP, AWD", brand: "honda", category: "suv", image: "https://images.unsplash.com/photo-1563720223484-21c6c2d3c6c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 23, name: "Honda Accord 2023", price: 31900, specs: "1.5L Turbo, 192 HP, Hybrid", brand: "honda", category: "sedan", image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 24, name: "Honda Pilot 2023", price: 42900, specs: "3.5L V6, 280 HP, 8-passenger", brand: "honda", category: "suv", image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 25, name: "Honda HR-V 2023", price: 27900, specs: "2.0L 4-cylinder, 158 HP, CVT", brand: "honda", category: "suv", image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            // Ford Cars (5 models)
+            { id: 26, name: "Ford Mustang 2023", price: 42900, specs: "2.3L EcoBoost, 310 HP, Sports", brand: "ford", category: "sports", image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 27, name: "Ford F-150 2023", price: 45900, specs: "3.5L EcoBoost, 400 HP, 4WD", brand: "ford", category: "suv", image: "https://images.unsplash.com/photo-1593941707882-a5bba5338fe2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 28, name: "Ford Explorer 2023", price: 42900, specs: "2.3L EcoBoost, 300 HP, 7-passenger", brand: "ford", category: "suv", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 29, name: "Ford Escape 2023", price: 31900, specs: "1.5L EcoBoost, 180 HP, Hybrid", brand: "ford", category: "suv", image: "https://images.unsplash.com/photo-1563720223484-21c6c2d3c6c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 30, name: "Ford Bronco 2023", price: 42900, specs: "2.3L EcoBoost, 300 HP, Off-road", brand: "ford", category: "suv", image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            // BMW Cars (5 models)
+            { id: 31, name: "BMW 3 Series 2023", price: 52900, specs: "2.0L Turbo, 255 HP, Luxury", brand: "bmw", category: "luxury", image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 32, name: "BMW X5 2023", price: 68900, specs: "3.0L Turbo, 335 HP, Luxury SUV", brand: "bmw", category: "luxury", image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 33, name: "BMW M4 2023", price: 89900, specs: "3.0L Twin-Turbo, 473 HP, Sports", brand: "bmw", category: "sports", image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 34, name: "BMW i4 2023", price: 69900, specs: "Electric, 335 HP, 300mi range", brand: "bmw", category: "luxury", image: "https://images.unsplash.com/photo-1617704548623-340376564e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 35, name: "BMW X3 2023", price: 54900, specs: "2.0L Turbo, 248 HP, Luxury SUV", brand: "bmw", category: "luxury", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            // Mercedes Cars (5 models)
+            { id: 36, name: "Mercedes C-Class 2023", price: 58900, specs: "2.0L Turbo, 255 HP, Luxury", brand: "mercedes", category: "luxury", image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 37, name: "Mercedes GLE 2023", price: 72900, specs: "3.0L Turbo, 362 HP, Luxury SUV", brand: "mercedes", category: "luxury", image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 38, name: "Mercedes E-Class 2023", price: 68900, specs: "3.0L Turbo, 362 HP, Luxury", brand: "mercedes", category: "luxury", image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 39, name: "Mercedes S-Class 2023", price: 119900, specs: "3.0L Turbo, 429 HP, Flagship", brand: "mercedes", category: "luxury", image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+            { id: 40, name: "Mercedes AMG GT 2023", price: 149900, specs: "4.0L V8, 469 HP, Super Sports", brand: "mercedes", category: "sports", image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+        ];
+
+        // User's shopping cart
+        let cart = [];
+        let displayedCars = [];
+        let currentFilter = 'all';
+        let visibleCount = 6;
+        let currentStep = 1;
+        let currentCar = null;
+        let currentPaymentMethod = 'credit';
+
+        // Admin-only cars (hidden from users) - USED FOR ADDING NEW CARS
+        const adminCars = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            renderCars();
+            setupEventListeners();
+        });
+
+        // Toggle admin panel
+        function toggleAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('active');
+
+            // Focus on first input when opening
+            if (panel.classList.contains('active')) {
+                setTimeout(() => {
+                    document.getElementById('adminCarName').focus();
+                }, 100);
+            }
+        }
+
+        // Add new car (admin only) - FIXED VERSION
+        function addNewCar() {
+            const name = document.getElementById('adminCarName').value.trim();
+            const price = document.getElementById('adminCarPrice').value.trim();
+            const specs = document.getElementById('adminCarSpecs').value.trim();
+            const image = document.getElementById('adminCarImage').value.trim();
+            const brand = document.getElementById('adminCarBrand').value;
+            const category = document.getElementById('adminCarCategory').value;
+
+            // Validate inputs
+            if (!name || name.length < 2) {
+                alert('Please enter a valid car name (at least 2 characters)');
+                return;
+            }
+
+            if (!price || isNaN(price) || price <= 0) {
+                alert('Please enter a valid price (positive number)');
+                return;
+            }
+
+            if (!specs || specs.length < 5) {
+                alert('Please enter valid specifications (at least 5 characters)');
+                return;
+            }
+
+            if (!image || !image.startsWith('http')) {
+                alert('Please enter a valid image URL starting with http or https');
+                return;
+            }
+
+            if (!brand) {
+                alert('Please select a brand');
+                return;
+            }
+
+            if (!category) {
+                alert('Please select a category');
+                return;
+            }
+
+            // Create new car object
+            const newCar = {
+                id: carsDatabase.length + adminCars.length + 1,
+                name: name,
+                price: parseInt(price),
+                specs: specs,
+                brand: brand,
+                category: category,
+                image: image,
+                isAdmin: true
+            };
+
+            // Add to adminCars array
+            adminCars.push(newCar);
+
+            // Show success message
+            showNotification(`✅ "${name}" added successfully!`);
+
+            // Clear form
+            document.getElementById('adminCarName').value = '';
+            document.getElementById('adminCarPrice').value = '';
+            document.getElementById('adminCarSpecs').value = '';
+            document.getElementById('adminCarImage').value = 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+            document.getElementById('adminCarBrand').value = '';
+            document.getElementById('adminCarCategory').value = '';
+
+            // Close admin panel
+            toggleAdminPanel();
+
+            // Refresh car display
+            renderCars();
+        }
+
+        // Render cars to the grid
+        function renderCars() {
+            const grid = document.getElementById('carsGrid');
+            grid.innerHTML = '';
+
+            // Combine regular cars and admin cars
+            const allCars = [...carsDatabase, ...adminCars];
+
+            // Filter cars based on current filter
+            displayedCars = currentFilter === 'all'
+                ? allCars
+                : allCars.filter(car => car.category === currentFilter);
+
+            // Show limited number of cars
+            const carsToShow = displayedCars.slice(0, visibleCount);
+
+            if (carsToShow.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 3rem; color: var(--light-gray); margin-bottom: 20px;">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3 style="color: var(--text-gray); margin-bottom: 10px;">No cars found</h3>
+                        <p style="color: var(--text-gray);">Try a different filter or add some cars from the admin panel!</p>
+                    </div>
+                `;
+                document.getElementById('loadMoreBtn').style.display = 'none';
+                return;
+            }
+
+            carsToShow.forEach(car => {
+                const card = document.createElement('div');
+                card.className = 'car-card';
+                card.innerHTML = `
+                    <div class="car-image">
+                        <img src="${car.image}" alt="${car.name}" onerror="this.src='https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        ${car.isAdmin ? `<div class="car-badge">New</div>` : ''}
+                        ${car.category === 'electric' ? `<div class="car-badge" style="background: #00D4AA; top: 50px;">Electric</div>` : ''}
+                    </div>
+                    <div class="car-info">
+                        <div class="car-header">
+                            <h3 class="car-title">${car.name}</h3>
+                            <div class="car-price">$${car.price.toLocaleString()}</div>
+                        </div>
+                        <p class="car-specs">${car.specs}</p>
+                        <div class="car-actions">
+                            <button class="btn btn-primary" onclick="buyCar(${car.id})">
+                                <i class="fas fa-shopping-bag"></i> Add to Cart
+                            </button>
+                            <button class="btn btn-outline" onclick="showDetails(${car.id})">
+                                <i class="fas fa-info-circle"></i> Details
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Update load more button visibility
+            document.getElementById('loadMoreBtn').style.display =
+                visibleCount < displayedCars.length ? 'block' : 'none';
+        }
+
+        // Filter cars by category
+        function filterCars(category) {
+            currentFilter = category;
+            visibleCount = 6;
+
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            renderCars();
+        }
+
+        // Load more cars
+        function loadMoreCars() {
+            visibleCount += 6;
+            renderCars();
+
+            // Scroll to newly loaded cars
+            document.getElementById('cars').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Buy car - adds to cart
+        function buyCar(carId) {
+            const allCars = [...carsDatabase, ...adminCars];
+            const car = allCars.find(car => car.id === carId);
+
+            if (!car) return;
+
+            // Add to cart
+            cart.push(car);
+            updateCartCount();
+
+            // Show success notification
+            showNotification(`🚗 ${car.name} added to cart!`);
+        }
+
+        // Show car details
+        function showDetails(carId) {
+            const allCars = [...carsDatabase, ...adminCars];
+            const car = allCars.find(car => car.id === carId);
+
+            if (car) {
+                alert(`${car.name}\n\nPrice: $${car.price.toLocaleString()}\nSpecifications: ${car.specs}\nBrand: ${car.brand.toUpperCase()}\nCategory: ${car.category.toUpperCase()}\n${car.isAdmin ? '★ Admin Exclusive' : ''}`);
+            }
+        }
+
+        // ========== CART FUNCTIONS ==========
+        function showCart() {
+            if (cart.length === 0) {
+                showEmptyCart();
+                return;
+            }
+
+            createCartModal();
+            renderCartItems();
+            updateCartTotal();
+            showCartModal();
+        }
+
+        // Create the cart modal HTML
+        function createCartModal() {
+            // Remove existing cart modal if any
+            const existingModal = document.getElementById('cartModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            // Calculate total
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price;
+            });
+
+            const modalHTML = `
+                <div class="modal-overlay" id="cartModal">
+                    <div class="cart-modal">
+                        <div class="modal-header">
+                            <h2><i class="fas fa-shopping-bag"></i> Your Shopping Cart</h2>
+                            <button class="close-modal" onclick="closeCartModal()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="modal-body">
+                            <div class="cart-items" id="cartItemsList">
+                                <!-- Cart items will be inserted here -->
+                            </div>
+                            
+                            <div class="cart-summary">
+                                <div class="summary-row">
+                                    <span>Subtotal:</span>
+                                    <span id="cartSubtotal">$${total.toLocaleString()}</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Tax (8%):</span>
+                                    <span id="cartTax">$${(total * 0.08).toLocaleString()}</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Delivery:</span>
+                                    <span>$500</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span>Total:</span>
+                                    <span id="cartTotal">$${(total + (total * 0.08) + 500).toLocaleString()}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="cart-actions">
+                                <button class="btn btn-outline" onclick="closeCartModal()">
+                                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                                </button>
+                                <button class="btn btn-primary" onclick="goToCheckoutFromCart()">
+                                    Proceed to Checkout <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }
+
+        // Render cart items in the modal
+        function renderCartItems() {
+            const cartItemsList = document.getElementById('cartItemsList');
+            cartItemsList.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                const itemHTML = `
+                    <div class="cart-item" data-id="${item.id}">
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="cart-item-info">
+                            <h3 class="cart-item-title">${item.name}</h3>
+                            <p class="cart-item-specs">${item.specs}</p>
+                            <div class="cart-item-price">$${item.price.toLocaleString()}</div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                cartItemsList.insertAdjacentHTML('beforeend', itemHTML);
+            });
+        }
+
+        // Update cart totals
+        function updateCartTotal() {
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price;
+            });
+
+            const tax = subtotal * 0.08;
+            const total = subtotal + tax + 500;
+
+            document.getElementById('cartSubtotal').textContent = `$${subtotal.toLocaleString()}`;
+            document.getElementById('cartTax').textContent = `$${tax.toLocaleString()}`;
+            document.getElementById('cartTotal').textContent = `$${total.toLocaleString()}`;
+        }
+
+        // Show empty cart message
+        function showEmptyCart() {
+            const emptyCartHTML = `
+                <div class="modal-overlay" id="cartModal">
+                    <div class="cart-modal empty-cart">
+                        <div class="modal-header">
+                            <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+                            <button class="close-modal" onclick="closeCartModal()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="modal-body">
+                            <div class="empty-cart-content">
+                                <div class="empty-cart-icon">
+                                    <i class="fas fa-shopping-bag"></i>
+                                </div>
+                                <h3>Your cart is empty</h3>
+                                <p>Browse our premium collection and add your dream car!</p>
+                                <button class="btn btn-primary" onclick="closeCartModal(); document.getElementById('cars').scrollIntoView({behavior: 'smooth'})">
+                                    <i class="fas fa-car"></i> Browse Cars
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', emptyCartHTML);
+            document.getElementById('cartModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Show cart modal
+        function showCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close cart modal
+        function closeCartModal() {
+            const modal = document.getElementById('cartModal');
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(() => modal.remove(), 300);
+            }
+            document.body.style.overflow = 'auto';
+        }
+
+        // Remove item from cart
+        function removeFromCart(index) {
+            const removedCar = cart[index];
+            cart.splice(index, 1);
+            updateCartCount();
+
+            // Show removal notification
+            showNotification(`🗑️ ${removedCar.name} removed from cart`);
+
+            if (cart.length === 0) {
+                closeCartModal();
+                showEmptyCart();
+            } else {
+                renderCartItems();
+                updateCartTotal();
+            }
+        }
+
+        // Go to checkout from cart
+        function goToCheckoutFromCart() {
+            if (cart.length === 0) return;
+
+            // Take the first item in cart as current car for checkout
+            currentCar = cart[0];
+            closeCartModal();
+
+            // Update order summary with cart total
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            const tax = subtotal * 0.08;
+            const total = subtotal + tax + 500;
+
+            document.getElementById('summaryCar').textContent = `${cart.length} item${cart.length > 1 ? 's' : ''} in cart`;
+            document.getElementById('summaryPrice').textContent = `$${subtotal.toLocaleString()}`;
+            document.getElementById('summaryTax').textContent = `$${tax.toLocaleString()}`;
+            document.getElementById('summaryTotal').textContent = `$${total.toLocaleString()}`;
+
+            // Show checkout modal
+            goToStep(1);
+            document.getElementById('checkoutModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Update cart count in header
+        function updateCartCount() {
+            document.querySelector('.cart-count').textContent = cart.length;
+        }
+
+        // Show notification
+        function showNotification(message) {
+            // Remove existing notification
+            const existingNotification = document.getElementById('cartNotification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            const notification = document.createElement('div');
+            notification.id = 'cartNotification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--primary-red);
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                z-index: 9999;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                animation: slideInRight 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                max-width: 300px;
+            `;
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i> ${message}
+            `;
+
+            document.body.appendChild(notification);
+
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // ========== CHECKOUT FUNCTIONS ==========
+        // Checkout functionality
+        function goToStep(step) {
+            currentStep = step;
+
+            // Update steps UI
+            document.querySelectorAll('.step').forEach(stepEl => {
+                const stepNum = parseInt(stepEl.dataset.step);
+
+                stepEl.classList.remove('active', 'completed');
+
+                if (stepNum === step) {
+                    stepEl.classList.add('active');
+                } else if (stepNum < step) {
+                    stepEl.classList.add('completed');
+                }
+            });
+
+            // Show corresponding form
+            document.querySelectorAll('.checkout-form').forEach(form => {
+                form.classList.remove('active');
+            });
+
+            document.getElementById(`step${step}`).classList.add('active');
+
+            // Update payment sections visibility
+            updatePaymentSections();
+        }
+
+        // Update payment sections based on selected method
+        function updatePaymentSections() {
+            // Hide all payment sections
+            document.getElementById('paymentForm').style.display = 'none';
+            document.getElementById('qrPaymentSection').style.display = 'none';
+            document.getElementById('mobilePaymentSection').style.display = 'none';
+
+            // Show selected payment section
+            if (currentPaymentMethod === 'credit') {
+                document.getElementById('paymentForm').style.display = 'block';
+            } else if (currentPaymentMethod === 'qr') {
+                document.getElementById('qrPaymentSection').style.display = 'block';
+            } else if (currentPaymentMethod === 'mobile') {
+                document.getElementById('mobilePaymentSection').style.display = 'block';
+            }
+
+            // Update confirmation display
+            document.getElementById('confirmPayment').textContent =
+                currentPaymentMethod === 'credit' ? 'Credit Card' :
+                    currentPaymentMethod === 'qr' ? 'QR Code' :
+                        currentPaymentMethod === 'mobile' ? 'Mobile Payment' : 'Bank Transfer';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Admin toggle
+            document.getElementById('adminToggle').addEventListener('click', toggleAdminPanel);
+
+            // Mobile menu
+            document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
+                const nav = document.querySelector('nav');
+                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            });
+
+            // Checkout modal close
+            document.getElementById('closeCheckout').addEventListener('click', closeModal);
+            document.getElementById('cancelCheckout').addEventListener('click', closeModal);
+            document.getElementById('closeSuccess').addEventListener('click', closeModal);
+
+            function closeModal() {
+                document.getElementById('checkoutModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Payment method selection
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function () {
+                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                    this.classList.add('active');
+
+                    currentPaymentMethod = this.dataset.method;
+                    updatePaymentSections();
+                });
+            });
+
+            // QR Payment confirmation
+            document.getElementById('confirmQrPayment').addEventListener('click', function () {
+                goToStep(3);
+            });
+
+            // Checkout navigation
+            document.getElementById('nextToPayment').addEventListener('click', function () {
+                // Validate form
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+
+                if (!firstName || !lastName || !email || !phone) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // Update confirmation details
+                document.getElementById('confirmName').textContent = `${firstName} ${lastName}`;
+                document.getElementById('confirmEmail').textContent = email;
+                document.getElementById('confirmAddress').textContent = document.getElementById('address').value;
+                document.getElementById('confirmCar').textContent = cart.length === 1 ? cart[0].name : `${cart.length} items in cart`;
+                document.getElementById('confirmColor').textContent = "Pearl White";
+                document.getElementById('confirmPrice').textContent = document.getElementById('summaryPrice').textContent;
+
+                document.getElementById('confirmTotal').textContent = document.getElementById('summaryTotal').textContent;
+
+                goToStep(2);
+            });
+
+            document.getElementById('backToDetails').addEventListener('click', function () {
+                goToStep(1);
+            });
+
+            document.getElementById('nextToConfirm').addEventListener('click', function () {
+                // Validate based on payment method
+                if (currentPaymentMethod === 'credit') {
+                    const cardNumber = document.getElementById('cardNumber').value;
+                    const cardName = document.getElementById('cardName').value;
+                    const expiry = document.getElementById('expiry').value;
+                    const cvv = document.getElementById('cvv').value;
+
+                    if (!cardNumber || !cardName || !expiry || !cvv) {
+                        alert('Please fill in all payment details.');
+                        return;
+                    }
+                }
+
+                goToStep(3);
+            });
+
+            document.getElementById('backToPayment').addEventListener('click', function () {
+                goToStep(2);
+            });
+
+            document.getElementById('completePurchase').addEventListener('click', function () {
+                // Show loading state
+                const btn = this;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                btn.disabled = true;
+
+                // Simulate API call
+                setTimeout(() => {
+                    goToStep(4);
+
+                    // Clear cart after successful purchase
+                    cart = [];
+                    updateCartCount();
+
+                    // Reset button
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 1500);
+            });
+
+            // Close modal when clicking outside
+            document.getElementById('checkoutModal').addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+
+                        // Close mobile menu
+                        const nav = document.querySelector('nav');
+                        nav.style.display = 'none';
+                    }
+                });
+            });
+
+            // Add keyboard shortcut for closing modal
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && document.getElementById('checkoutModal').classList.contains('active')) {
+                    closeModal();
+                }
+                if (e.key === 'Escape' && document.getElementById('cartModal')) {
+                    closeCartModal();
+                }
+                if (e.key === 'Escape' && document.getElementById('adminPanel').classList.contains('active')) {
+                    toggleAdminPanel();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
