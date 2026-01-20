@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Car Shop | Modern Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.18);
+      --text: #e8ecf3;
+      --muted: #a9b0c2;
+      --accent: #4da3ff;
+      --accent-2: #7cf2c2;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #1a2a6c33, transparent 60%),
+        radial-gradient(800px 500px at 90% 10%, #4da3ff33, transparent 60%),
+        linear-gradient(160deg, #0b1220, #0e1630 60%, #0b1220);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      color: var(--text);
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 980px;
+      padding: 24px;
+    }
+
+    .card {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      padding: 28px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)), var(--card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    }
+
+    .brand {
+      padding: 28px;
+      border-radius: 16px;
+      background:
+        linear-gradient(135deg, rgba(77,163,255,0.18), rgba(124,242,194,0.10)),
+        url('https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11,18,32,0.2), rgba(11,18,32,0.85));
+    }
+
+    .brand-inner {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .logo span {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #081221;
+      font-size: 18px;
+    }
+
+    .brand h1 {
+      margin: 18px 0 8px;
+      font-size: 34px;
+      line-height: 1.1;
+    }
+
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 420px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .form {
+      padding: 22px 18px 18px;
+      display: grid;
+      align-content: center;
+    }
+
+    .form h2 {
+      margin: 0 0 6px;
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+    .form small {
+      color: var(--muted);
+    }
+
+    .field {
+      margin-top: 18px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+
+    .field input::placeholder { color: #9aa3b2; }
+
+    .field input:focus {
+      border-color: rgba(77,163,255,0.8);
+      box-shadow: 0 0 0 4px rgba(77,163,255,0.15);
+      background: rgba(255,255,255,0.10);
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .row a { color: var(--accent); text-decoration: none; }
+
+    .btn {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: .2px;
+      color: #081221;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 12px 30px rgba(77,163,255,0.35);
+      transition: transform .1s ease, box-shadow .1s ease, filter .1s ease;
+    }
+
+    .btn:hover { filter: brightness(1.05); }
+    .btn:active { transform: translateY(1px); box-shadow: 0 8px 18px rgba(77,163,255,0.35); }
+
+    .alt {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .alt a { color: var(--accent); text-decoration: none; font-weight: 500; }
+
+    @media (max-width: 860px) {
+      .card { grid-template-columns: 1fr; }
+      .brand { min-height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="shell">
+    <div class="card">
+
+      <section class="brand">
+        <div class="brand-inner">
+          <div>
+            <div class="logo">
+              <strong>Car Shop</strong>
+            </div>
+            <h1>Smarter vehicle management</h1>
+            <p>Modern tools to manage inventory, sales, and services — all in one secure platform.</p>
+            <div class="stats">
+              <div class="stat">Inventory</div>
+              <div class="stat">Sales</div>
+              <div class="stat">Services</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="form">
+        <h2>Sign in</h2>
+        <small>Use your company credentials</small>
+
+        <form action="#">
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          </div>
+
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required />
+          </div>
+
+          <div class="row">
+            <label><input type="checkbox" /> Remember me</label>
+            <a href="#">Forgot password?</a>
+          </div>
+
+          <button class="btn" id="btn-login" type="submit">Continue</button>
+        </form>
+
+        <div class="alt">No account? <a href="#">Create one</a></div>
+      </section>
+
+    </div>
+  </div>
+<script src="./js/login.js"></script>
+</body>
+</html>
