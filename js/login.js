@@ -1,6 +1,6 @@
 const users = [
     { id: 1, email: 'sokom@gmail.com', password: '12345', role: 'admin' },
-    { id: 2, email: 'gta@gmail.com', password: '12345', role: 'user' },
+    { id: 2, email: 'ly@gmail.com', password: '12345', role: 'user' },
     { id: 3, email: 'tola@gmail.com', password: '12345', role: 'user' },
     { id: 4, email: 'sreyvik@gmail.com', password: '12345', role: 'user' },
     { id: 5, email: 'reourn@gmail.com', password: '12345', role: 'user' },
